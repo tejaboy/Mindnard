@@ -37,6 +37,7 @@
 				{
 					if (!Mindnard.draggedFlow.isBuiltIn())
 					{
+						Mindnard.draggedFlow.deleteFlow();
 						setInput(Mindnard.draggedFlow);
 					}
 				}
@@ -44,6 +45,7 @@
 				{
 					if (Mindnard.draggedFlow.isBuiltIn())
 					{
+						Mindnard.draggedFlow.deleteFlow();
 						setInput(Mindnard.draggedFlow);
 					}
 				}
