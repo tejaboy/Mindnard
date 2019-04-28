@@ -35,7 +35,7 @@
 			{
 				if (ParameterName == "_Next")
 				{
-					if (!Mindnard.draggedFlow.isBuiltIn())
+					if (!Mindnard.draggedFlow.isInput())
 					{
 						Mindnard.draggedFlow.deleteFlow();
 						setInput(Mindnard.draggedFlow);
@@ -43,7 +43,7 @@
 				}
 				else
 				{
-					if (Mindnard.draggedFlow.isBuiltIn())
+					if (Mindnard.draggedFlow.isInput())
 					{
 						Mindnard.draggedFlow.deleteFlow();
 						setInput(Mindnard.draggedFlow);

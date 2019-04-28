@@ -17,8 +17,6 @@
 		public var Editor_screen;
 		public var nextConnector;
 		
-		public var builtIn = false;
-		
 		public function Block_mc(_Mindnard, _Editor_screen)
 		{
 			Mindnard = _Mindnard;

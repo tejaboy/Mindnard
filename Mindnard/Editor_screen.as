@@ -130,7 +130,6 @@
 			Blocks_mc.addChild(block);
 			
 			block.addParameterField(new ParameterField_mc("Input", block, Mindnard));
-			block.setInput();
 		}
 		
 		// External

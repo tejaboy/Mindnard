@@ -8,14 +8,8 @@
 		public function Input_Block(_Mindnard, _Editor_screen)
 		{
 			super(_Mindnard, _Editor_screen);
-		}
-		
-		public function setInput()
-		{
-			super.nextConnector.y = 45;
-			super.ParameterLoader_mc.removeChildAt(0);
 			
-			super.builtIn = true;
+			super.nextConnector.y = 45;
 		}
 		
 		public function addParameterField(_ParameterField:ParameterField_mc)

@@ -3,6 +3,7 @@
 	import flash.display.MovieClip;
 	import flash.events.MouseEvent;
 	import fl.motion.Color;
+	import flash.utils.getQualifiedClassName;
 	
 	import MindnardPackage.Flow_Connector;
 	
@@ -80,10 +81,10 @@
 			super.resetFlowOrigin();
 		}
 		
-		// Check if is built-in type
-		public function isBuiltIn()
+		// Check if is input type
+		public function isInput()
 		{
-			return Block_mc.builtIn;
+			return flash.utils.getQualifiedClassName(Block_mc) == "MindnardPackage::Input_Block";
 		}
 		
 		// Get input if is built-in type
