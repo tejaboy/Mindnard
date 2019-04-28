@@ -13,10 +13,10 @@
 	
 	public class Block_mc extends MovieClip
 	{
-		var parameters = [];
-		var parameterFieldCount = 0;
-		var Mindnard;
-		var Editor_screen;
+		public var parameters = [];
+		public var parameterFieldCount = 0;
+		public var Mindnard;
+		public var Editor_screen;
 		public var BlockLib:String;
 		public var BlockFunc;
 		public var nextConnector;

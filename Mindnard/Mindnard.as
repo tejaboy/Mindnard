@@ -3,86 +3,25 @@
 	// ev3dev -l robot -pw maker < README.txt "cat > ~/README.txt"
 	import flash.display.MovieClip;
 	import flash.events.MouseEvent;
-	import flash.net.URLLoader;
-	import flash.net.URLRequest;
 	import flash.filesystem.*;
 	import flash.filesystem.FileStream;
+	
+	import MindnardPackage.Compiler;
 	
 	public class Mindnard extends MovieClip
 	{
 		public var draggedFlow;
+		private var Compiler;
 		
 		public function Mindnard()
 		{
+			Compiler = new MindnardPackage.Compiler(this);
 		}
 		
 		// Compile the visual scripting to Python
 		public function Compile(evt:MouseEvent)
 		{
-			var pythonCode = addImports();
-			var connected;
-			
-			if (Editor_mc.StartBlock == undefined)
-				return;
-			
-			// Define main function
-			pythonCode += "\ndef main():\n";
-			
-			// First block
-			connected = Editor_mc.StartBlock.getConnected();
-			pythonCode += "\t" + getFileName(connected.BlockLib) + "." + connected.BlockFunc + "(";
-			pythonCode += getParametersString(connected) + ")\n";
-			
-			// Save the file to local
-			SaveFile(pythonCode);
-		}
-		
-		// Python code generation helpers
-		private function addImports()
-		{
-			var importStatements = "#!/usr/bin/env python3\n\nfrom ev3dev.ev3 import *\n";
-			
-			var folder = File.applicationDirectory.resolvePath("MindnardScripts/");
-			var files = folder.getDirectoryListing();
-			
-			for (var i = 0; i < files.length; i++)
-			{
-				importStatements += "import MindnardLibs." + getFileName(files[i].name) + "\n";
-			}
-			
-			return importStatements;
-		}
-		
-		public function getFileName(fileName)
-		{
-			return fileName.substr(0, fileName.length - 3);
-		}
-		
-		public function getParametersString(Block_mc)
-		{
-			var parametersString = "";
-			var parameters = Block_mc.parameters;
-			var parameterName;
-			var parameterValue;
-			
-			for (var i = 1; i < parameters.length; i++)
-			{
-				// Parameters[i] is Parameter_mc
-				parameterName = parameters[i].getParameterName();
-				parameterValue = parameters[i].getValue();
-				
-				if (parameterValue == undefined)
-				{
-					if (parameters[i].hasDefaultValue())
-					{
-						parameterValue = parameters[i].getDefaultValue();
-					}
-				}
-				
-				parametersString += parameterName + " = " + parameterValue + ", ";
-			}
-			
-			return parametersString;
+			SaveFile(Compiler.Compile());
 		}
 		
 		// Misc helpers
@@ -97,6 +36,11 @@
 			stream.close();
 			
 			trace(code);
+		}
+		
+		public function getFileName(fileName)
+		{
+			return fileName.substr(0, fileName.length - 3);
 		}
 	}
 }
