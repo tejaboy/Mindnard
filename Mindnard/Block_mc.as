@@ -23,7 +23,7 @@
 		public var prevConnector;
 		
 		public var builtIn = false;
-		public var Input;
+		public var ParameterField;
 		
 		public function Block_mc(_Mindnard, _Editor_screen, _BlockLib = undefined, _BlockFunc = undefined)
 		{
@@ -90,8 +90,7 @@
 		
 		public function getInputValue()
 		{
-			trace(Input);
-			return Input.getInputValue();
+			return ParameterField.getInputValue();
 		}
 		
 		// Public methods - configuration
@@ -120,7 +119,7 @@
 		
 		public function addParameterField(_ParameterField:ParameterField_mc)
 		{
-			Input = _ParameterField;
+			ParameterField = _ParameterField;
 			
 			_ParameterField.x = 0;
 			_ParameterField.y = _ParameterField.height * parameterFieldCount;

@@ -40,7 +40,7 @@
 		// Python code generation helpers
 		private function addImports()
 		{
-			var importStatements = "";
+			var importStatements = "#!/usr/bin/env python3\n\nfrom ev3dev.ev3 import *\n";
 			
 			var folder = File.applicationDirectory.resolvePath("MindnardScripts/");
 			var files = folder.getDirectoryListing();
@@ -63,10 +63,12 @@
 			var parametersString = "";
 			var parameters = Block_mc.parameters;
 			
-			for (var i = 0; i < parameters.length; i++)
+			for (var i = 1; i < parameters.length; i++)
 			{
 				parametersString += parameters[i].getParameterName() + " = " + parameters[i].getValue() + ",";
 			}
+			
+			return parametersString;
 		}
 		
 		// Misc helpers
