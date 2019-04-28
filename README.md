@@ -1,6 +1,21 @@
 # Mindnard
 Open source visual programming software for ev3dev (Python).
 
-Mindnard is an visual programming software for EV3 Robotics. It converts visual programming to Python code. This way we enable students with no prior programming experiences to learn the basics of programming.
+## Getting Started
 
-Mindnard heavily focus on the functional programming style.
+### Prerequisites
+1. Adobe Flash Professional or Adobe Animate
+
+### Installing
+1. Clone the repo to your local machine.
+2. Open up Mindnard.fla
+3. Press CTRL+F5 to run the application
+
+## Built With
+* Adobe Flash Professional CS6
+
+## Authors
+* [tejaboy](https://github.com/tejaboy)
+
+## License
+This project is licensed under the GNU General Public License 3.0 - see the [LICENSE.md](https://github.com/tejaboy/Mindnard/blob/master/LICENSE) file for more details.
