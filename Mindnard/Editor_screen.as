@@ -12,6 +12,10 @@
 	import flash.net.URLRequest;
 	import flash.events.Event;
 	
+	import MindnardPackage.Input_Block;
+	import MindnardPackage.Start_Block;
+	import MindnardPackage.Function_Block;
+	
 	public class Editor_screen extends MovieClip
 	{
 		var Mindnard;
@@ -101,7 +105,7 @@
 			
 			var local = globalToLocal(new Point(stage.mouseX, stage.mouseY));
 			
-			StartBlock = new Block_mc(Mindnard, this);
+			StartBlock = new Start_Block(Mindnard, this);
 			StartBlock.setHeaderTitle("Start");
 			StartBlock.x = local.x;
 			StartBlock.y = local.y;
@@ -117,7 +121,7 @@
 			
 			var local = globalToLocal(new Point(stage.mouseX, stage.mouseY));
 			
-			var block = new Block_mc(Mindnard, this);
+			var block = new Input_Block(Mindnard, this);
 			block.setHeaderTitle("Input");
 			block.x = local.x;
 			block.y = local.y;
@@ -183,7 +187,7 @@
 			// Set up block location and title
 			var local = globalToLocal(new Point(stage.mouseX, stage.mouseY));
 			
-			var block = new Block_mc(Mindnard, this, lib_name, func_name);
+			var block = new Function_Block(Mindnard, this, lib_name, func_name);
 			block.setHeaderTitle(func_name);
 			block.x = local.x;
 			block.y = local.y;

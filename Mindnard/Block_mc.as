@@ -13,24 +13,16 @@
 	
 	public class Block_mc extends MovieClip
 	{
-		public var parameters = [];
-		public var parameterFieldCount = 0;
 		public var Mindnard;
 		public var Editor_screen;
-		public var BlockLib:String;
-		public var BlockFunc;
 		public var nextConnector;
-		public var prevConnector;
 		
 		public var builtIn = false;
-		public var ParameterField;
 		
-		public function Block_mc(_Mindnard, _Editor_screen, _BlockLib = undefined, _BlockFunc = undefined)
+		public function Block_mc(_Mindnard, _Editor_screen)
 		{
 			Mindnard = _Mindnard;
 			Editor_screen = _Editor_screen
-			BlockLib = _BlockLib;
-			BlockFunc = _BlockFunc;
 			
 			// Create output connector
 			nextConnector = new Block_Connector_mc(this);
@@ -40,10 +32,6 @@
 			Block_Connector_Loader_mc.addChild(nextConnector);
 			
 			nextConnector.setupFlowConnector();
-			
-			// Create input connector
-			prevConnector = new Parameter_mc("_Next", this, Mindnard);
-			addParameter(prevConnector);
 			
 			// Dragging
 			Block_Header_mc.DragOverlay_mc.addEventListener(MouseEvent.MOUSE_DOWN, startDragging);
@@ -77,7 +65,7 @@
 			nextConnector.resetFlowOrigin();
 		}
 		
-		// Public methods - accessing property
+		// Public methods - accessing connected properties
 		public function getConnected()
 		{
 			return nextConnector.Connected.Block_mc;
@@ -88,48 +76,13 @@
 			return nextConnector.Connected;
 		}
 		
-		public function getInputValue()
-		{
-			return ParameterField.getInputValue();
-		}
-		
 		// Public methods - configuration
 		public function setHeaderTitle(_title)
 		{
 			Block_Header_mc.Title_txt.text = _title;
 		}
 		
-		public function addParameter(_Parameter:Parameter_mc)
-		{
-			parameters.push(_Parameter);
-			
-			_Parameter.x = 10 + (10 + _Parameter.width) * (parameters.length - 1);
-			_Parameter.y = -(_Parameter.height) * 2.2;
-			
-			ParameterLoader_mc.addChild(_Parameter);
-		}
-		
-		public function setInput()
-		{
-			nextConnector.y += (parameterFieldCount * 30);
-			ParameterLoader_mc.removeChildAt(0);
-			
-			builtIn = true;
-		}
-		
-		public function addParameterField(_ParameterField:ParameterField_mc)
-		{
-			ParameterField = _ParameterField;
-			
-			_ParameterField.x = 0;
-			_ParameterField.y = _ParameterField.height * parameterFieldCount;
-			
-			ParameterLoader_mc.addChild(_ParameterField);
-			
-			parameterFieldCount += 1;
-		}
-		
-		// Menu
+		// Right click context menu
 		private function onBlockHeaderRightClick(evt)
 		{
 			Mindnard.ContextMenu_mc.clearOption();
@@ -137,6 +90,7 @@
 			Mindnard.ContextMenu_mc.showMenu();
 		}
 		
+		// Removing block
 		public function removeBlockAnimation()
 		{
 			Mindnard.ContextMenu_mc.hideMenu();
@@ -148,11 +102,6 @@
 		{
 			// Remove Input and Connected reference
 			nextConnector.deleteFlow();
-			
-			for (var i = 0; i < parameters.length; i++)
-			{
-				parameters[i].deleteFlow();
-			}
 			
 			// Remove child and this.
 			Block_Connector_Loader_mc.removeChild(nextConnector);
