@@ -165,6 +165,7 @@
 		
 		public function addFunction(_params)
 		{
+			var parameter_name;
 			var func_name = _params[0];
 			var func_def = _params[1];
 			var lib_name = _params[2];
@@ -189,7 +190,11 @@
 			// Set up block parameters
 			for (var i = 0; i < parameters.length; i++)
 			{
-				block.addParameter(new Parameter_mc(parameters[i], block, Mindnard));
+				// Remove params default value
+				parameter_name = parameters[i].split("=")[0];
+				parameter_name = parameter_name.replace(/[\s\r\n]+/gim, "");
+				
+				block.addParameter(new Parameter_mc(parameter_name, block, Mindnard));
 			}
 			
 			// Insert block

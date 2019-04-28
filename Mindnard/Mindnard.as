@@ -65,7 +65,7 @@
 			
 			for (var i = 1; i < parameters.length; i++)
 			{
-				parametersString += parameters[i].getParameterName() + " = " + parameters[i].getValue() + ",";
+				parametersString += parameters[i].getParameterName() + " = " + parameters[i].getValue() + ", ";
 			}
 			
 			return parametersString;
