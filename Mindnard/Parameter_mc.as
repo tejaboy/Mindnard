@@ -10,15 +10,17 @@
 		var Block_mc;
 		var Mindnard;
 		var Flows_mc;
+		var ParameterDefault;
 		
 		var Input;
 		
-		public function Parameter_mc(_ParameterName:String, _Block_mc, _Mindnard)
+		public function Parameter_mc(_ParameterName:String, _Block_mc, _Mindnard, _ParameterDefault = undefined)
 		{
 			ParameterName = _ParameterName;
 			Block_mc = _Block_mc
 			Mindnard = _Mindnard;
 			Flows_mc = Mindnard.Editor_mc.Flows_mc;
+			ParameterDefault = _ParameterDefault;
 			
 			// On Flow Mouseup
 			this.addEventListener(MouseEvent.MOUSE_UP, onSelfMouseUp);
@@ -74,6 +76,16 @@
 				return undefined;
 			
 			return Input.getInputValue();
+		}
+		
+		public function hasDefaultValue()
+		{
+			return ParameterDefault != undefined;
+		}
+		
+		public function getDefaultValue()
+		{
+			return ParameterDefault;
 		}
 		
 		// On deleted

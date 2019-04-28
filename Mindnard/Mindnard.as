@@ -62,10 +62,24 @@
 		{
 			var parametersString = "";
 			var parameters = Block_mc.parameters;
+			var parameterName;
+			var parameterValue;
 			
 			for (var i = 1; i < parameters.length; i++)
 			{
-				parametersString += parameters[i].getParameterName() + " = " + parameters[i].getValue() + ", ";
+				// Parameters[i] is Parameter_mc
+				parameterName = parameters[i].getParameterName();
+				parameterValue = parameters[i].getValue();
+				
+				if (parameterValue == undefined)
+				{
+					if (parameters[i].hasDefaultValue())
+					{
+						parameterValue = parameters[i].getDefaultValue();
+					}
+				}
+				
+				parametersString += parameterName + " = " + parameterValue + ", ";
 			}
 			
 			return parametersString;
