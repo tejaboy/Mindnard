@@ -80,7 +80,7 @@
 			
 			if (mouseDownState)
 			{
-				var local = this.globalToLocal(new Point(stage.mouseX, stage.mouseY));
+				var local = this.globalToLocal(new Point(stage.mouseX - 9.5, stage.mouseY));
 				
 				line.graphics.clear();
 				line.graphics.lineStyle(2, 0x000000);
