@@ -38,10 +38,6 @@
 			
 			var processArgs:Vector.<String> = new Vector.<String>();
 			processArgs.push("ev3dev");
-			processArgs.push(" -l");
-			processArgs.push(" robot");
-			processArgs.push(" -pw");
-			processArgs.push(" maker");
 			
 			var nativeProcessStartupInfo = new NativeProcessStartupInfo();
 			nativeProcessStartupInfo.arguments = processArgs;
@@ -51,6 +47,7 @@
 			
 			process.addEventListener(ProgressEvent.STANDARD_OUTPUT_DATA, onOutputDataHandler);
 			process.addEventListener(ProgressEvent.STANDARD_ERROR_DATA, onErrorDataHandler);
+			process.addEventListener(ProgressEvent.STANDARD_INPUT_PROGRESS, onInputProgress);
 			process.addEventListener(NativeProcessExitEvent.EXIT, onExitHandler);
 			process.addEventListener(IOErrorEvent.STANDARD_OUTPUT_IO_ERROR, onIOErrorHandler);
 			process.addEventListener(IOErrorEvent.STANDARD_ERROR_IO_ERROR, onIOErrorHandler);
@@ -60,12 +57,19 @@
 		
 		function onOutputDataHandler(evt)
 		{
-			e("onOutputDataHandler: ", process.standardOutput.readUTFBytes(process.standardOutput.bytesAvailable)); 
+			trace("onOutputDataHandler: ", process.standardOutput.readUTFBytes(process.standardOutput.bytesAvailable)); 
+			process.standardInput.writeUTF("robot");
 		}
 		
 		function onErrorDataHandler(evt)
 		{
 			trace("onErrorDataHandler: ", process.standardError.readUTFBytes(process.standardError.bytesAvailable)); 
+		}
+		
+		function onInputProgress(evt)
+		{
+			trace(process.standardInput);
+			// trace("onInputProgress: ", process.standardInput.readBytes(process.standardInput.bytesAvailable));
 		}
 		
 		function onExitHandler(evt)
