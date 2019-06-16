@@ -1,6 +1,8 @@
 # Mindnard
 Open source visual programming software for ev3dev (Python).
 
+WARNING: This software is still in development and is not working as advertised. Do not use this for and on production.
+
 ## Getting Started
 
 ### Prerequisites
